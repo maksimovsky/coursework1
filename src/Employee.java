@@ -8,8 +8,11 @@ public class Employee {
     private static int idCount;
 
     public Employee(String fullName, int department, double salary) {
-        this.fullName = fullName;
+        if (department < 1 || department > 5) {
+            throw new RuntimeException("Такого отдела не существует!");
+        }
         this.department = department;
+        this.fullName = fullName;
         this.salary = salary;
         idCount++;
         id = idCount;
@@ -36,6 +39,9 @@ public class Employee {
     }
 
     public void setDepartment(int department) {
+        if (department < 1 || department > 5) {
+            throw new RuntimeException("Такого отдела не существует!");
+        }
         this.department = department;
     }
 

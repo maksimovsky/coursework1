@@ -104,31 +104,37 @@ public class EmployeeBook {
     }
 
     public Employee getEmployeeWithLowestSalary() {
-        int employeeWithLowestSalary = 0;
+        Employee employeeWithLowestSalary = null;
         double minSalary = 99_999_999;
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null && employees[i].getSalary() < minSalary) {
-                minSalary = employees[i].getSalary();
-                employeeWithLowestSalary = i;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getSalary() < minSalary) {
+                minSalary = employee.getSalary();
+                employeeWithLowestSalary = employee;
             }
         }
-        return employees[employeeWithLowestSalary];
+        return employeeWithLowestSalary;
     }
 
     public Employee getEmployeeWithHighestSalary() {
-        int employeeWithHighestSalary = 0;
+        Employee employeeWithHighestSalary = null;
         double maxSalary = 0;
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null && employees[i].getSalary() > maxSalary) {
-                maxSalary = employees[i].getSalary();
-                employeeWithHighestSalary = i;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getSalary() > maxSalary) {
+                maxSalary = employee.getSalary();
+                employeeWithHighestSalary = employee;
             }
         }
-        return employees[employeeWithHighestSalary];
+        return employeeWithHighestSalary;
     }
 
     public double getAverageSalary() {
-        return getMonthSalaries() / Employee.getIdCount();
+        int employeesCount = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                employeesCount++;
+            }
+        }
+        return getMonthSalaries() / employeesCount;
     }
 
     public void printEmployeesFullName() {
